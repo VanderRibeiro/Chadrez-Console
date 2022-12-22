@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using tabuleiro;
 using xadrez;
-using Xadrez_Console;
 
-namespace xadrez_console{
-    class Program{
-        static void Main(string[] args){
+namespace xadrez_console {
+    class Program {
+        static void Main(string[] args) {
 
-            try{
+            try {
                 PartidaDeXadrez partida = new PartidaDeXadrez();
 
-                while (!partida.terminada){
+                while (!partida.terminada) {
 
                     Console.Clear();
                     Tela.imprimirTabuleiro(partida.tab);
@@ -26,20 +21,20 @@ namespace xadrez_console{
                     bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
 
                     Console.Clear();
-                    Tela.imprimirTabuleiro(partida.tab);//, posicoesPossiveis);
+                    Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
 
+                    Console.WriteLine();
                     Console.Write("Destino: ");
                     Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
 
-                    partida.executarMovimento(origem, destino);
+                    partida.executaMovimento(origem, destino);
                 }
 
-                Tela.imprimirTabuleiro(partida.tab);
-
             }
-            catch(TabuleiroException e){
+            catch (TabuleiroException e) {
                 Console.WriteLine(e.Message);
             }
+
             Console.ReadLine();
         }
     }
